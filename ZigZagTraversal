@@ -1,0 +1,70 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+vector<vector<int> > Solution::zigzagLevelOrder(TreeNode* root) 
+{
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    
+   stack<TreeNode*> s1,s2;
+	
+		
+	vector<vector<int> > v;
+	
+	 vector<int> v1;
+	
+	int d=0;
+	
+	if(root==NULL)
+	
+		return v;
+	
+	s1.push(root);
+	
+	while(!s1.empty())
+
+	{
+	   
+		
+		TreeNode *p=s1.top();
+	
+		s1.pop();
+		v1.push_back(p->val);
+	    if (d == 0)
+	    {
+	        if (p->left != NULL) s2.push(p->left);
+            if (p->right != NULL) s2.push(p->right);
+         } 
+		else 
+		{
+		    if (p->right != NULL) s2.push(p->right);
+             if (p->left != NULL) s2.push(p->left);
+        }
+		if(s1.empty())
+		{
+		   	 if(d==0)
+			    d=1;
+			 else
+			  d=0;
+		
+			v.push_back(v1);
+	
+			v1.clear();
+		
+			s1.swap(s2);
+		
+		}
+	
+	
+	}
+	
+	return v;     
+}

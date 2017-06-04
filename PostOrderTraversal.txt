@@ -1,0 +1,39 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+vector<int> Solution::postorderTraversal(TreeNode* A) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    stack<TreeNode*> s1,s2;
+    vector<int> v;
+    s1.push(A);
+    while(!s1.empty())
+    {
+        TreeNode *p=s1.top();
+        s1.pop();
+        s2.push(p);
+        if(p->left)
+        {
+            s1.push(p->left);
+        }
+        if(p->right)
+        {
+            s1.push(p->right);
+        }
+    }
+    while(!s2.empty())
+    {
+        TreeNode *p=s2.top();
+        s2.pop();
+        v.push_back(p->val);
+    }
+    return v;
+}
